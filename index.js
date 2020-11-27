@@ -13,7 +13,7 @@ app.use(corsMiddleWare());
 
 app.use("/", authRouter);
 
-app.use("/writings", writingRouter);
+app.use("/writing", writingRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on Port:`, PORT);
