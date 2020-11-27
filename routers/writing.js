@@ -20,4 +20,13 @@ router.post("/", authMiddleware, async (req, res, next) => {
   }
 });
 
+router.get("/", async (req, res, next) => {
+  try {
+    const writings = await Writing.findAll();
+    res.status(200).send(writings);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
