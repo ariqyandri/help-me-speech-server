@@ -13,12 +13,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   writing.init(
     {
-      type: DataTypes.STRING,
       title: { type: DataTypes.STRING, allowNull: false },
       content: { type: DataTypes.STRING, allowNull: false },
       imageUrl: DataTypes.STRING,
       videoUrl: DataTypes.STRING,
       userId: { type: DataTypes.STRING, allowNull: false },
+      categoryId: { type: DataTypes.STRING, allowNull: false },
     },
     {
       sequelize,
