@@ -4,11 +4,11 @@ const Writing = require("../models/").writing;
 const User = require("../models/").user;
 const router = new Router();
 
-router.post("/", async (req, res, next) => {
+router.post("/", authMiddleware, async (req, res, next) => {
   try {
     const newWriting = await Writing.create({
       ...req.body,
-      userId: 2,
+      userId: req.user.dataValues["id"],
     });
     console.log(req.body);
     res.status(200).send(newWriting);
