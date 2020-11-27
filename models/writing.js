@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       writing.belongsTo(models.user);
+      writing.belongsTo(models.category);
     }
   }
   writing.init(
