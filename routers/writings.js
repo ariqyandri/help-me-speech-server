@@ -6,7 +6,7 @@ const router = new Router();
 router.get("/", authMiddleware, async (req, res, next) => {
   try {
     const myWritings = await Writing.findAll({
-      where: userId === req.user.dataValues["id"],
+      where: { userId: req.user.dataValues["id"] },
     });
     console.log();
     res.status(200).send(myWritings);
