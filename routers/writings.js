@@ -15,15 +15,17 @@ router.get("/", authMiddleware, async (req, res, next) => {
   }
 });
 
-router.get("/:category", authMiddleware, async (req, res, next) => {
+router.get("/:category/:categoryId", authMiddleware, async (req, res, next) => {
   try {
     const myWritings = await Writing.findAll({
       where: {
-        categoryId: req.body.categoryId,
+        categoryId: req.params.categoryId,
         userId: req.user.dataValues["id"],
       },
     });
-    console.log();
+    if (!myWritings) {
+      res.status(200).send([]);
+    }
     res.status(200).send(myWritings);
   } catch (error) {
     next(error);
