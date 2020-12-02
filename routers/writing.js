@@ -16,7 +16,7 @@ router.post("/", authMiddleware, async (req, res, next) => {
   }
 });
 
-router.get("/mywriting/:id", authMiddleware, async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const myWriting = await Writing.findByPk(parseInt(req.params.id));
     res.status(200).send(myWriting);
