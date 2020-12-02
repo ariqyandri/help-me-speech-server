@@ -22,9 +22,12 @@ router.put("/:id", authMiddleware, async (req, res, next) => {
   try {
     const updatedWriting = await Writing.update(
       { ...req.body },
-      { where: { id: parseInt(req.params.id) } }
+      {
+        where: { id: parseInt(req.params.id) },
+        returning: true,
+      }
     );
-    res.status(200).send(updatedWriting);
+    res.status(200).send(updatedWriting["1"][0]);
   } catch (error) {
     next(error);
   }
