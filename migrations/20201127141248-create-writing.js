@@ -15,6 +15,11 @@ module.exports = {
       content: {
         type: Sequelize.STRING,
         allowNull: false,
+        defaultValue: false
+      },
+      private: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       imageUrl: {
         type: Sequelize.STRING,
