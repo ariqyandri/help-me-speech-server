@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       title: { type: DataTypes.STRING, allowNull: false },
       content: { type: DataTypes.STRING, allowNull: false },
+      private: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       imageUrl: DataTypes.STRING,
       videoUrl: DataTypes.STRING,
       userId: { type: DataTypes.INTEGER, allowNull: false },

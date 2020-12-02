@@ -1,12 +1,14 @@
 const { Router } = require("express");
 const authMiddleware = require("../auth/middleware");
 const Writing = require("../models/").writing;
+const Category = require("../models/").category;
 const router = new Router();
 
 router.get("/", authMiddleware, async (req, res, next) => {
   try {
     const myWritings = await Writing.findAll({
       where: { userId: req.user.dataValues["id"] },
+      include: { model: Category, attributes: ["name"] },
     });
     console.log();
     res.status(200).send(myWritings);
