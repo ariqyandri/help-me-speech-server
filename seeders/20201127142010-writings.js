@@ -10,6 +10,7 @@ module.exports = {
           content:
             "Hello,  I am Dummy Author. This is just an example speech, so there will be little to no content. Thankyou.",
           userId: 2,
+          private: false,
           categoryId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
