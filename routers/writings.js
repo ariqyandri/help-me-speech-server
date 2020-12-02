@@ -24,6 +24,7 @@ router.get("/:category/:categoryId", authMiddleware, async (req, res, next) => {
         categoryId: req.params.categoryId,
         userId: req.user.dataValues["id"],
       },
+      include: { model: Category, attributes: ["name"] },
     });
     if (!myWritings) {
       res.status(200).send([]);

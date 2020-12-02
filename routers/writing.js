@@ -18,6 +18,21 @@ router.post("/", authMiddleware, async (req, res, next) => {
   }
 });
 
+router.put("/:id", authMiddleware, async (req, res, next) => {
+  try {
+    const updatedWriting = await Writing.update(
+      { ...req.body },
+      {
+        where: { id: parseInt(req.params.id) },
+        returning: true,
+      }
+    );
+    res.status(200).send(updatedWriting["1"][0]);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get("/:id", async (req, res, next) => {
   try {
     const myWriting = await Writing.findByPk(parseInt(req.params.id), {
