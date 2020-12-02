@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const authMiddleware = require("../auth/middleware");
 const Writing = require("../models/").writing;
+const User = require("../models/").user;
+const Category = require("../models/").category;
 const router = new Router();
 
 router.post("/", authMiddleware, async (req, res, next) => {
@@ -18,7 +20,12 @@ router.post("/", authMiddleware, async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const myWriting = await Writing.findByPk(parseInt(req.params.id));
+    const myWriting = await Writing.findByPk(parseInt(req.params.id), {
+      include: [
+        { model: User, attributes: ["firstName", "lastName"] },
+        { model: Category, attributes: ["name"] },
+      ],
+    });
     res.status(200).send(myWriting);
   } catch (error) {
     next(error);
