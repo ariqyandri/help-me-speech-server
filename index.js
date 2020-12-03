@@ -5,6 +5,7 @@ const authRouter = require("./routers/auth");
 const writingRouter = require("./routers/writing");
 const writingsRouter = require("./routers/writings");
 const categoriesRouter = require("./routers/categories");
+const imageRouter = require("./routers/image")
 
 const app = express();
 const bodyParserMiddleWare = express.json();
@@ -14,6 +15,8 @@ app.use(bodyParserMiddleWare);
 app.use(corsMiddleWare());
 
 app.use("/", authRouter);
+
+app.use("/image", imageRouter);
 
 app.use("/writing", writingRouter);
 
