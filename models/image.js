@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   image.init(
     {
-      url: DataTypes.STRING,
-      writingId: DataTypes.INTEGER,
+      url: { type: DataTypes.STRING, allowNull: false },
+      writingId: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
       sequelize,
