@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   writing.init(
     {
       title: { type: DataTypes.STRING, allowNull: false },
-      content: { type: DataTypes.STRING, allowNull: false },
+      content: { type: DataTypes.TEXT, allowNull: false },
       isPrivate: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
