@@ -8,13 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       url: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       writingId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: "writings",
           key: "id",

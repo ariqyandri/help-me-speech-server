@@ -33,13 +33,13 @@ router.put("/mywriting/:id", authMiddleware, async (req, res, next) => {
   }
 });
 
-router.get("/mywriting/:id", async (req, res, next) => {
+router.get("/mywriting/:id", authMiddleware, async (req, res, next) => {
   try {
     const myWriting = await Writing.findByPk(parseInt(req.params.id), {
       include: [
         { model: User, attributes: ["firstName", "lastName"] },
         { model: Category, attributes: ["name"] },
-        { model: Image, attributes: ["url"] },
+        { model: Image, attributes: ["url", "name"] },
       ],
     });
     res.status(200).send(myWriting);

@@ -13,8 +13,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   image.init(
     {
+      name: { type: DataTypes.STRING, allowNull: false },
       url: { type: DataTypes.STRING, allowNull: false },
-      writingId: { type: DataTypes.INTEGER, allowNull: false },
+      writingId: DataTypes.INTEGER,
     },
     {
       sequelize,
