@@ -22,8 +22,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: false,
       },
-      imageUrl: DataTypes.STRING,
-      videoUrl: DataTypes.STRING,
       userId: { type: DataTypes.INTEGER, allowNull: false },
       categoryId: { type: DataTypes.INTEGER, allowNull: false },
     },

@@ -15,17 +15,11 @@ module.exports = {
       content: {
         type: Sequelize.TEXT,
         allowNull: false,
-        defaultValue: false
+        defaultValue: false,
       },
       isPrivate: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
-      },
-      imageUrl: {
-        type: Sequelize.STRING,
-      },
-      videoUrl: {
-        type: Sequelize.STRING,
       },
       userId: {
         type: Sequelize.INTEGER,
