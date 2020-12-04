@@ -38,4 +38,16 @@ router.get(
   }
 );
 
+router.get("/", async (req, res, next) => {
+  try {
+    const writings = await Writing.findAll({
+      where: { isPrivate: false },
+      include: { model: Category, attributes: ["name"] },
+    });
+    res.status(200).send(writings);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
