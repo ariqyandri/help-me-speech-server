@@ -5,5 +5,5 @@ module.exports = {
     dialect: "postgres",
   },
   test: {},
-  production: {},
+  production: { url: process.env.ELEPHANT_SQL, dialect: "postgres" },
 };
