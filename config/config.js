@@ -5,5 +5,8 @@ module.exports = {
     dialect: "postgres",
   },
   test: {},
-  production: {},
+  production: {
+    url:
+      "postgres://qdxtfgin:DhCL15nCEQ03vcXxhOmuDlv5IJeisuAG@hattie.db.elephantsql.com:5432/qdxtfgin",
+  },
 };
