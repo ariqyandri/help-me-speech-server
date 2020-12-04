@@ -48,4 +48,19 @@ router.get("/mywriting/:id", authMiddleware, async (req, res, next) => {
   }
 });
 
+router.get("/:id", async (req, res, next) => {
+  try {
+    const writing = await Writing.findByPk(parseInt(req.params.id), {
+      include: [
+        { model: User, attributes: ["firstName", "lastName"] },
+        { model: Category, attributes: ["name"] },
+        { model: Image, attributes: ["id", "url", "name"] },
+      ],
+    });
+    res.status(200).send(writing);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
