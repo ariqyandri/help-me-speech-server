@@ -5,10 +5,13 @@ const authRouter = require("./routers/auth");
 const writingRouter = require("./routers/writing");
 const writingsRouter = require("./routers/writings");
 const categoriesRouter = require("./routers/categories");
-const imageRouter = require("./routers/image")
+const imageRouter = require("./routers/image");
+const cors = require("cors");
+const bodyParserMiddleWare = express.json();
 
 const app = express();
-const bodyParserMiddleWare = express.json();
+
+app.use(cors());
 
 app.use(bodyParserMiddleWare);
 
