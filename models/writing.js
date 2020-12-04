@@ -10,19 +10,18 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       writing.belongsTo(models.user);
       writing.belongsTo(models.category);
+      writing.hasMany(models.image);
     }
   }
   writing.init(
     {
       title: { type: DataTypes.STRING, allowNull: false },
-      content: { type: DataTypes.STRING, allowNull: false },
+      content: { type: DataTypes.TEXT, allowNull: false },
       isPrivate: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
       },
-      imageUrl: DataTypes.STRING,
-      videoUrl: DataTypes.STRING,
       userId: { type: DataTypes.INTEGER, allowNull: false },
       categoryId: { type: DataTypes.INTEGER, allowNull: false },
     },

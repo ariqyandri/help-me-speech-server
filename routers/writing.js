@@ -2,6 +2,7 @@ const { Router } = require("express");
 const authMiddleware = require("../auth/middleware");
 const Writing = require("../models/").writing;
 const User = require("../models/").user;
+const Image = require("../models/").image;
 const Category = require("../models/").category;
 const router = new Router();
 
@@ -11,14 +12,13 @@ router.post("/", authMiddleware, async (req, res, next) => {
       ...req.body,
       userId: req.user.dataValues["id"],
     });
-    console.log(req.body);
     res.status(200).send(newWriting);
   } catch (error) {
     next(error);
   }
 });
 
-router.put("/:id", authMiddleware, async (req, res, next) => {
+router.put("/mywriting/:id", authMiddleware, async (req, res, next) => {
   try {
     const updatedWriting = await Writing.update(
       { ...req.body },
@@ -33,12 +33,13 @@ router.put("/:id", authMiddleware, async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/mywriting/:id", authMiddleware, async (req, res, next) => {
   try {
     const myWriting = await Writing.findByPk(parseInt(req.params.id), {
       include: [
         { model: User, attributes: ["firstName", "lastName"] },
         { model: Category, attributes: ["name"] },
+        { model: Image, attributes: ["id", "url", "name"] },
       ],
     });
     res.status(200).send(myWriting);
