@@ -39,7 +39,7 @@ router.get("/mywriting/:id", authMiddleware, async (req, res, next) => {
       include: [
         { model: User, attributes: ["firstName", "lastName"] },
         { model: Category, attributes: ["name"] },
-        { model: Image, attributes: ["url", "name"] },
+        { model: Image, attributes: ["id", "url", "name"] },
       ],
     });
     res.status(200).send(myWriting);
