@@ -48,6 +48,20 @@ router.get("/mywriting/:id", authMiddleware, async (req, res, next) => {
   }
 });
 
+router.delete("/mywriting/:id", authMiddleware, async (req, res, next) => {
+  try {
+    await Writing.destroy({
+      where: { id: parseInt(req.params.id) },
+    });
+    await Image.destroy({
+      where: { writingId: parseInt(req.params.id) },
+    });
+    res.status(200).send({ message: "success" });
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get("/:id", async (req, res, next) => {
   try {
     const writing = await Writing.findByPk(parseInt(req.params.id), {
