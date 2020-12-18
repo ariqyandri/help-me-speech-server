@@ -38,7 +38,7 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post("/signup", async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, image, password } = req.body;
 
   if (!email || !password || !firstName || !lastName) {
     return res
@@ -51,6 +51,9 @@ router.post("/signup", async (req, res) => {
       firstName,
       lastName,
       email,
+      image: image
+        ? image
+        : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg",
       password: bcrypt.hashSync(password, SALT_ROUNDS),
     });
 
