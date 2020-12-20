@@ -6,6 +6,7 @@ const writingRouter = require("./routers/writing");
 const writingsRouter = require("./routers/writings");
 const categoriesRouter = require("./routers/categories");
 const imageRouter = require("./routers/image");
+const userRouter = require("./routers/user");
 const cors = require("cors");
 const bodyParserMiddleWare = express.json();
 
@@ -18,6 +19,8 @@ app.use(bodyParserMiddleWare);
 app.use(corsMiddleWare());
 
 app.use("/", authRouter);
+
+app.use("/user", userRouter);
 
 app.use("/image", imageRouter);
 

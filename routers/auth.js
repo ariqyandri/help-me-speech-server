@@ -38,19 +38,25 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post("/signup", async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, image, password } = req.body;
 
   if (!email || !password || !firstName || !lastName) {
-    return res
-      .status(400)
-      .send("Please provide an email, password and both first and last name");
+    return res.status(400).send({
+      message: "Please provide an email, password and both first and last name",
+    });
   }
-
+  const userEmail = await User.findOne({ where: { email: email } });
+  if (userEmail) {
+    return res.status(400).send({ message: "User with email already exists" });
+  }
   try {
     const newUser = await User.create({
       firstName,
       lastName,
       email,
+      image: image
+        ? image
+        : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg",
       password: bcrypt.hashSync(password, SALT_ROUNDS),
     });
 
