@@ -9,7 +9,10 @@ router.get("/mywritings", authMiddleware, async (req, res, next) => {
   try {
     const myWritings = await Writing.findAll({
       where: { userId: req.user.dataValues["id"] },
-      include: { model: Category, attributes: ["name"] },
+      include: [
+        { model: User, attributes: ["firstName", "lastName"] },
+        { model: Category, attributes: ["name"] },
+      ],
     });
     res.status(200).send(myWritings);
   } catch (error) {
@@ -27,7 +30,10 @@ router.get(
           categoryId: req.params.categoryId,
           userId: req.user.dataValues["id"],
         },
-        include: { model: Category, attributes: ["name"] },
+        include: [
+          { model: User, attributes: ["firstName", "lastName"] },
+          { model: Category, attributes: ["name"] },
+        ],
       });
       if (!myWritings) {
         res.status(200).send([]);

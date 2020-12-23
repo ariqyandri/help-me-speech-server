@@ -66,7 +66,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const writing = await Writing.findByPk(parseInt(req.params.id), {
       include: [
-        { model: User, attributes: ["firstName", "lastName"] },
+        { model: User, attributes: ["id", "firstName", "lastName"] },
         { model: Category, attributes: ["name"] },
         { model: Image, attributes: ["id", "url", "name"] },
       ],
